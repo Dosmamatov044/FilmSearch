@@ -1,5 +1,6 @@
 package com.example.filmsearch
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,11 +17,12 @@ class FilmSearchViewModel: ViewModel() {
         fetchFilms()
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun fetchFilms() {
 
 
         viewModelScope.launch {
-          val data=  App.api?.fetchFilm(Constants.TOKEN,"rating.kp","7-10","year","1990-1999","typeNumber",2)
+          val data=  App.api?.fetchFilm(Constants.TOKEN,"rating.kp","7-10","year","2000-2001","typeNumber",1)
 
 
             try {
@@ -31,14 +33,14 @@ class FilmSearchViewModel: ViewModel() {
 
                 }else{
 
-                    Log.d("ololo", data.message())
+                    Log.d("ololo", "else")//data.message())
 
                 }
 
 
             }catch (e:Exception){
 
-                Log.d("ololo",data!!.message())
+                Log.d("ololo","Exception")//data!!.message())
 
             }
 

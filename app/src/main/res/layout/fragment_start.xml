@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.start.StartFragment">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvSearch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/cvLater"
+        app:layout_constraintEnd_toStartOf="@+id/cvFavorite"
+        app:layout_constraintStart_toStartOf="@id/guidelineVS"
+        app:layout_constraintTop_toTopOf="@id/guidelineHT">
+
+        <ImageButton
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/orange"
+            android:paddingBottom="32dp"
+            android:scaleType="fitCenter"
+
+            android:src="@drawable/search"
+
+            />
+
+        <TextView
+            android:id="@+id/tvSearch"
+            style="@style/mainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="8dp"
+            android:text="@string/search" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvFavorite"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toTopOf="@id/cvWatched"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineVE"
+        app:layout_constraintStart_toEndOf="@+id/cvSearch"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHT">
+
+        <ImageButton
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/red"
+            android:paddingBottom="32dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/favorite" />
+
+        <TextView
+            android:id="@+id/tvFavorite"
+            style="@style/mainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="8dp"
+            android:text="@string/favorite" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvLater"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineHB"
+        app:layout_constraintEnd_toStartOf="@+id/cvWatched"
+        app:layout_constraintStart_toStartOf="@id/guidelineVS"
+        app:layout_constraintTop_toBottomOf="@+id/cvSearch">
+
+        <ImageButton
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blue"
+            android:paddingBottom="32dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/later" />
+
+        <TextView
+            android:id="@+id/tvLater"
+            style="@style/mainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="8dp"
+            android:text="@string/later" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvWatched"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineHB"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineVE"
+        app:layout_constraintStart_toEndOf="@+id/cvLater"
+        app:layout_constraintTop_toBottomOf="@+id/cvFavorite">
+
+        <ImageButton
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/green"
+            android:paddingBottom="32dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/watched" />
+
+        <TextView
+            android:id="@+id/tvWatched"
+            style="@style/mainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="8dp"
+            android:text="@string/watched" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+</androidx.constraintlayout.widget.ConstraintLayout>

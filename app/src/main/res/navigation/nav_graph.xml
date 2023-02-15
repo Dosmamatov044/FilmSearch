@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.filmsearch.screens.start.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_fragmentSearch"
+            app:destination="@id/fragmentSearch" />
+        <action
+            android:id="@+id/action_startFragment_to_fragmentFavorite"
+            app:destination="@id/fragmentFavorite" />
+        <action
+            android:id="@+id/action_startFragment_to_fragmentLater"
+            app:destination="@id/fragmentLater" />
+        <action
+            android:id="@+id/action_startFragment_to_fragmentWatched"
+            app:destination="@id/fragmentWatched" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentFavorite"
+        android:name="com.example.filmsearch.screens.favorite.FragmentFavorite"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/fragmentLater"
+        android:name="com.example.filmsearch.screens.later.FragmentLater"
+        android:label="fragment_later"
+        tools:layout="@layout/fragment_later" />
+    <fragment
+        android:id="@+id/fragmentSearch"
+        android:name="com.example.filmsearch.screens.search.FragmentSearch"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/fragmentWatched"
+        android:name="com.example.filmsearch.screens.watched.FragmentWatched"
+        android:label="fragment_watched"
+        tools:layout="@layout/fragment_watched" />
+</navigation>
