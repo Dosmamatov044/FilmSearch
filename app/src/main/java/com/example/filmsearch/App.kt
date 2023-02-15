@@ -1,6 +1,8 @@
 package com.example.filmsearch
 
 import android.app.Application
+import com.example.filmsearch.room.DocDao
+import com.example.filmsearch.room.DocDatabase
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -31,10 +33,17 @@ class App : Application() {
             .build()
         api =
             retrofit.create(FilmSearchApi::class.java) //Создаем объект, при помощи которого будем выполнять запросы
+
+
+      val getDatabase= DocDatabase.invoke(this)
+
+        getDao=getDatabase.getDocDao()
     }
     companion object {
         var api: FilmSearchApi? = null
             private set
+
+        lateinit var getDao:DocDao
     }
 
 

@@ -1,10 +1,11 @@
 package com.example.filmsearch
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.filmsearch.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -18,14 +19,19 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.films.observe(this){data->
 
+
             data.forEach {
-                Log.d("ololo",it.name)
+
+                binding.txt.append(it.name+ "   ")
             }
 
 
 
 
+
         }
+
+
 
 
 
