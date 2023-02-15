@@ -25,6 +25,14 @@ interface FilmSearchApi {
   @Query("search") search2: Int,
   ):Response <Movies>
 
+ @GET("movie")
+ suspend  fun fetchMovieByName(
+  @Query("token") token: String,
+  @Query("field") nameField: String,
+  @Query("search") nameSearch: String,
+
+ ):Response <Movies>
+
  //field=rating.kp
 // &search=7-10
 // &field=year

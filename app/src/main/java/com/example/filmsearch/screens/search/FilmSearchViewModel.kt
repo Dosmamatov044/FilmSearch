@@ -1,20 +1,22 @@
-package com.example.filmsearch
+package com.example.filmsearch.screens.search
 
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.filmsearch.App
+import com.example.filmsearch.Constants
 import com.example.filmsearch.model.Doc
 import kotlinx.coroutines.launch
 
 class FilmSearchViewModel: ViewModel() {
 
-    val films=MutableLiveData<List<Doc>> ()
+    val filmsLiveData=MutableLiveData<List<Doc>> ()
 
 
     init {
-        fetchFilms()
+      //  fetchFilms()
     }
 
     @SuppressLint("SuspiciousIndentation")
@@ -28,7 +30,7 @@ class FilmSearchViewModel: ViewModel() {
             try {
                 if (data!!.isSuccessful){
 
-                    films.value=data.body()?.docs
+                    filmsLiveData.value=data.body()?.docs
 
 
                 }else{
@@ -44,17 +46,38 @@ class FilmSearchViewModel: ViewModel() {
 
             }
 
-
-
-
-
-
         }
 
+    }
+
+
+     fun fetchMovieByName(name: String) {
+        viewModelScope.launch {
+            val data=  App.api?.fetchMovieByName(Constants.TOKEN,"name",name)
 
 
 
 
+            try {
+                if (data!!.isSuccessful){
+
+                    filmsLiveData.value=data.body()?.docs
+
+
+                }else{
+
+                    Log.d("ololo", "else")//data.message())
+
+                }
+
+
+            }catch (e:Exception){
+
+                Log.d("ololo","Exception")//data!!.message())
+
+            }
+
+        }
 
     }
 
