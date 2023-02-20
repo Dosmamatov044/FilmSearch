@@ -11,6 +11,7 @@ import com.example.filmsearch.R
 
 
 import com.example.filmsearch.databinding.FragmentSearchBinding
+import com.example.filmsearch.screens.result_search.FragmentResultSearch
 import com.example.filmsearch.showToast
 
 
@@ -34,14 +35,12 @@ class FragmentSearch : Fragment() {
             else{
                 val name = binding.etInputName.text.toString()
                 viewModel.fetchMovieByName(name = name)
-                viewModel.filmsLiveData.observe(viewLifecycleOwner){
-                    binding.tvInputTitle.text = viewModel.filmsLiveData.value?.get(0)?.name.toString()
-                }
-               // binding.btnSearch.setOnClickListener { findNavController().navigate(R.id.fragmentResult) }
+
+
+                   findNavController().navigate(R.id.fragmentResultSearch)}
 }
             }
 
 
 
     }
-}

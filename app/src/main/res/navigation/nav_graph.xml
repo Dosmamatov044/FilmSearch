@@ -27,12 +27,20 @@
         android:id="@+id/fragmentFavorite"
         android:name="com.example.filmsearch.screens.favorite.FragmentFavorite"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_fragmentFavorite_to_fragmentCurrent"
+            app:destination="@id/fragmentCurrent" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentLater"
         android:name="com.example.filmsearch.screens.later.FragmentLater"
         android:label="fragment_later"
-        tools:layout="@layout/fragment_later" />
+        tools:layout="@layout/fragment_later" >
+        <action
+            android:id="@+id/action_fragmentLater_to_fragmentCurrent"
+            app:destination="@id/fragmentCurrent" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentSearch"
         android:name="com.example.filmsearch.screens.search.FragmentSearch"
@@ -40,16 +48,29 @@
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_fragmentSearch_to_fragmentResult"
-            app:destination="@id/fragmentResult" />
+            app:destination="@id/fragmentResultSearch" />
     </fragment>
     <fragment
         android:id="@+id/fragmentWatched"
         android:name="com.example.filmsearch.screens.watched.FragmentWatched"
         android:label="fragment_watched"
-        tools:layout="@layout/fragment_watched" />
+        tools:layout="@layout/fragment_watched" >
+        <action
+            android:id="@+id/action_fragmentWatched_to_fragmentCurrent"
+            app:destination="@id/fragmentCurrent" />
+    </fragment>
     <fragment
-        android:id="@+id/fragmentResult"
-        android:name="com.example.filmsearch.screens.result.FragmentResult"
+        android:id="@+id/fragmentResultSearch"
+        android:name="com.example.filmsearch.screens.result_search.FragmentResultSearch"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" />
+        tools:layout="@layout/fragment_result_search" >
+        <action
+            android:id="@+id/action_fragmentResult_to_fragmentCurrent"
+            app:destination="@id/fragmentCurrent" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCurrent"
+        android:name="com.example.filmsearch.screens.current.FragmentCurrent"
+        android:label="fragment_current"
+        tools:layout="@layout/fragment_current" />
 </navigation>

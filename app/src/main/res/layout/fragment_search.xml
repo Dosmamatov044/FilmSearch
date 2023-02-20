@@ -23,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/hint"
-        app:layout_constraintBottom_toTopOf="@+id/tvType"
+        app:layout_constraintBottom_toTopOf="@+id/tvSearchType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvInputTitle" />
@@ -33,10 +33,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="visible"
-        app:constraint_referenced_ids="spType,spYear,tvType,tvYear" />
+        app:constraint_referenced_ids="spType,spYear,tvSearchType,tvSearchYears" />
 
     <TextView
-        android:id="@+id/tvType"
+        android:id="@+id/tvSearchType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/mainText"
@@ -51,13 +51,13 @@
         android:id="@+id/spType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/tvYear"
+        app:layout_constraintBottom_toTopOf="@+id/tvSearchYears"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvType" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSearchType" />
 
     <TextView
-        android:id="@+id/tvYear"
+        android:id="@+id/tvSearchYears"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/mainText"
@@ -74,7 +74,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvYear" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSearchYears" />
 
     <Button
         android:id="@+id/btnSearch"
