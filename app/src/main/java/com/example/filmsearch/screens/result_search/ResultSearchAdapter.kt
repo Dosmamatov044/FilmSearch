@@ -2,6 +2,7 @@ package com.example.filmsearch.screens.result_search
 
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,8 +33,28 @@ class ResultSearchAdapter:RecyclerView.Adapter<ResultSearchAdapter.ResultHolder>
             tvName.text = model.name
             tvGenres.text = model.type
             tvYear.text = model.year.toString()
-            tvVote.text = model.votes?.kp.toString()
-            imgItem.loadImage(model.poster?.previewUrl)
+            tvVote.text = model.votes.kp.toString()
+
+
+
+
+
+            try {
+                imgItem.loadImage(model.poster.previewUrl)
+            }catch (e:java.lang.NullPointerException){
+
+                Log.d("errors",e.message.toString())
+
+            }finally {
+                Log.d("errors","Ммм")
+
+            }
+
+
+
+
+
+
         }
 
 

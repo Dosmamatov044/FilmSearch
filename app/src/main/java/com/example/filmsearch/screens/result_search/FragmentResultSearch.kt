@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,12 +13,13 @@ import com.example.filmsearch.databinding.FragmentResultSearchBinding
 import com.example.filmsearch.model.Doc
 
 import com.example.filmsearch.screens.search.FilmSearchViewModel
+import com.example.filmsearch.showToast
 
 
 class FragmentResultSearch : Fragment() {
 
     lateinit var binding: FragmentResultSearchBinding
-    val viewModel: FilmSearchViewModel by viewModels()
+    val viewModel: FilmSearchViewModel by activityViewModels()
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: ResultSearchAdapter
 
@@ -26,7 +28,7 @@ class FragmentResultSearch : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentResultSearchBinding.inflate(layoutInflater)
         return binding.root
 
@@ -36,7 +38,7 @@ class FragmentResultSearch : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
+        activity?.showToast(viewModel.toString())
         init()
     }
     private fun init() {

@@ -15,6 +15,10 @@ class FilmSearchViewModel: ViewModel() {
     val filmsLiveData=MutableLiveData<List<Doc>> ()
 
 
+
+
+
+
     init {
       //  fetchFilms()
     }

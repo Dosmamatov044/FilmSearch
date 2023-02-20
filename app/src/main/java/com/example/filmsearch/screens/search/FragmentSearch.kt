@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.filmsearch.R
@@ -17,11 +19,11 @@ import com.example.filmsearch.showToast
 
 class FragmentSearch : Fragment() {
     lateinit var binding: FragmentSearchBinding
-    val viewModel: FilmSearchViewModel by viewModels()
+    val viewModel: FilmSearchViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSearchBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -36,6 +38,7 @@ class FragmentSearch : Fragment() {
                 val name = binding.etInputName.text.toString()
                 viewModel.fetchMovieByName(name = name)
 
+                activity?.showToast(viewModel.toString())
 
                    findNavController().navigate(R.id.fragmentResultSearch)}
 }
