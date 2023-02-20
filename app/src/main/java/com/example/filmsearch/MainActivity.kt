@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import com.example.filmsearch.databinding.ActivityMainBinding
+import com.example.filmsearch.screens.search.FilmSearchViewModel
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    val viewModel:FilmSearchViewModel by viewModels()
+    val viewModel: FilmSearchViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        viewModel.films.observe(this){data->
+        viewModel.filmsLiveData.observe(this){ data->
 
             data.forEach {
                 Log.d("ololo",it.name)

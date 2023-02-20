@@ -4,20 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".screens.result_search.FragmentResultSearch">
 
-    <fragment
-        android:id="@+id/fragmentHost"
-        app:navGraph="@navigation/nav_graph"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        app:defaultNavHost="true"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvResultSearch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </fragment>
-
-
+        tools:listitem="@layout/list_movie_item"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

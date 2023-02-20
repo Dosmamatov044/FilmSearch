@@ -17,13 +17,21 @@ interface FilmSearchApi {
  @GET("movie")
   suspend  fun fetchFilm(
   @Query("token") token: String,
-  @Query("field") field: String,
+  @Query("field") rating: String,
   @Query("search") search: String,
-  @Query("field") field1: String,
+  @Query("field") year: String,
   @Query("search") search1: String,
-  @Query("field") field2: String,
+  @Query("field") typeNumber: String,
   @Query("search") search2: Int,
   ):Response <Movies>
+
+ @GET("movie")
+ suspend  fun fetchMovieByName(
+  @Query("token") token: String,
+  @Query("field") nameField: String,
+  @Query("search") nameSearch: String,
+
+ ):Response <Movies>
 
  //field=rating.kp
 // &search=7-10
