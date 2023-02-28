@@ -18,5 +18,9 @@ data class Doc(
     val type: String,
     val votes: Votes,
     val watchability: Watchability,
-    val year: Int
+    val year: Int,
+    val page:Int?=null
+
+
+
 )

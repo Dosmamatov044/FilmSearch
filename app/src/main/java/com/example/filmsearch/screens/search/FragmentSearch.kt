@@ -1,6 +1,7 @@
 package com.example.filmsearch.screens.search
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.filmsearch.R
 
@@ -15,6 +17,9 @@ import com.example.filmsearch.R
 import com.example.filmsearch.databinding.FragmentSearchBinding
 import com.example.filmsearch.screens.result_search.FragmentResultSearch
 import com.example.filmsearch.showToast
+import com.example.filmsearch.state.FilmState
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 class FragmentSearch : Fragment() {
@@ -35,12 +40,51 @@ class FragmentSearch : Fragment() {
                 activity?.showToast("Введите название!")
             }
             else{
+
                 val name = binding.etInputName.text.toString()
-                viewModel.fetchMovieByName(name = name)
+//viewModel.fetchMovieByName(name)
 
-                activity?.showToast(viewModel.toString())
 
-                   findNavController().navigate(R.id.fragmentResultSearch)}
+          viewLifecycleOwner.lifecycleScope.launch {
+
+              viewModel.fetchMovieByName(name).collect{
+
+                  when(it){
+                    is FilmState.LOADING->{
+
+                        Log.d("tuuk","Загружаем")
+
+                    }
+                   is FilmState.Success->{
+                       Log.d("tuuk",it.data)
+
+                   }
+
+                  is  FilmState.FAILED->{
+                      Log.d("tuuk",it.message)
+
+
+                  }
+
+                  }
+
+
+
+              }
+
+
+          }
+
+
+
+
+
+                }
+
+
+
+
+                  // findNavController().navigate(R.id.fragmentResultSearch)}
 }
             }
 

@@ -8,82 +8,93 @@ import androidx.lifecycle.viewModelScope
 import com.example.filmsearch.App
 import com.example.filmsearch.Constants
 import com.example.filmsearch.model.Doc
+import com.example.filmsearch.state.FilmState
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
-class FilmSearchViewModel: ViewModel() {
 
-    val filmsLiveData=MutableLiveData<List<Doc>> ()
+class FilmSearchViewModel : ViewModel() {
 
-
-
-
-
+    val filmsLiveData = MutableLiveData<List<Doc>>()
 
     init {
-      //  fetchFilms()
-    }
-
-    @SuppressLint("SuspiciousIndentation")
-    private fun fetchFilms() {
-
-
-        viewModelScope.launch {
-          val data=  App.api?.fetchFilm(Constants.TOKEN,"rating.kp","7-10","year","2000-2001","typeNumber",1)
-
-
-            try {
-                if (data!!.isSuccessful){
-
-                    filmsLiveData.value=data.body()?.docs
-
-
-                }else{
-
-                    Log.d("ololo", "else")//data.message())
-
-                }
-
-
-            }catch (e:Exception){
-
-                Log.d("ololo","Exception")//data!!.message())
-
-            }
-
-        }
-
+        //  fetchFilms()
     }
 
 
-     fun fetchMovieByName(name: String) {
+
+
+
+    fun fetchMovieByName(name: String)= callbackFlow<FilmState<String>> {
+
+
         viewModelScope.launch {
-            val data=  App.api?.fetchMovieByName(Constants.TOKEN,"name",name)
+            val data = App.api?.fetchMovieByName(Constants.TOKEN, "name", name, "3")
+
+
+
+
+            delay(1000)
+
+
+              trySendBlocking(FilmState.loading())
 
 
 
 
             try {
-                if (data!!.isSuccessful){
+                if (data!!.isSuccessful) {
 
-                    filmsLiveData.value=data.body()?.docs
+                    filmsLiveData.value = data.body()?.docs
+               trySendBlocking(FilmState.success( "Ok"))
 
-
-                }else{
-
+                } else {
+                 trySendBlocking(FilmState.failed("Error"))
                     Log.d("ololo", "else")//data.message())
+
 
                 }
 
+if (data.code()==0){
 
-            }catch (e:Exception){
+    Log.d("ololo","fail")
 
-                Log.d("ololo","Exception")//data!!.message())
+}
+
+
+
+
+
+            } catch (e: Exception) {
+                trySendBlocking(FilmState.failed("Error"))
+                Log.d("ololo", "Exception")//data!!.message())
+
+
+            }finally {
+                if (data?.code()==0){
+
+                    Log.d("ololo","fail")
+
+                }
 
             }
 
         }
 
-    }
+
+
+        awaitClose {}
+
+    }.flowOn(Dispatchers.IO)
 
 
 }
+
+
+

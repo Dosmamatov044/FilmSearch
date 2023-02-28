@@ -38,7 +38,10 @@ class FragmentResultSearch : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        activity?.showToast(viewModel.toString())
+
+
+
+
         init()
     }
     private fun init() {

@@ -22,7 +22,7 @@ interface FilmSearchApi {
   @Query("field") year: String,
   @Query("search") search1: String,
   @Query("field") typeNumber: String,
-  @Query("search") search2: Int,
+  @Query("search") search2: Int,@Query("page")page:Int
   ):Response <Movies>
 
  @GET("movie")
@@ -30,7 +30,7 @@ interface FilmSearchApi {
   @Query("token") token: String,
   @Query("field") nameField: String,
   @Query("search") nameSearch: String,
-
+@Query("page") page:String
  ):Response <Movies>
 
  //field=rating.kp
