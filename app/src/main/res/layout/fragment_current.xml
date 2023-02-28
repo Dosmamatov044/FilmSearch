@@ -1,14 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".screens.current.FragmentCurrent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/imgItemCurrent"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+
+        android:padding="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/tvNameCurrent"
+        style="@style/mainText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvYearCurrent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgItemCurrent"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="Мумия" />
+
+    <TextView
+        android:id="@+id/tvYearCurrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvGenresCurrent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNameCurrent"
+        tools:text="2014" />
+
+    <TextView
+        android:id="@+id/tvGenresCurrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/tvYearCurrent"
+        tools:text="Драма" />
+
+    <TextView
+        android:id="@+id/tvRatingTxtCurrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:text="Рейтинг КП:"
+        app:layout_constraintEnd_toStartOf="@+id/tvRatingCurrent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGenresCurrent" />
+
+    <TextView
+        android:id="@+id/tvRatingCurrent"
+        style="@style/mainText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRatingTxtCurrent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toEndOf="@+id/tvRatingTxtCurrent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGenresCurrent"
+        tools:text="8.2" />
+
+    <ScrollView
+        android:id="@+id/svDescriptionCurrent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRatingTxtCurrent">
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="В 1895 году группа британских археологов из клана Бэннингов на раскопках в Египте обнаружила и вскрыла гробницу легендарной жрицы Анаки. Как это обычно и бывает, ослушавшись совета одного из местных жителей не вскрывать гробницу, ибо «тот кто ограбит гробницы Египта - умрет», археологи проникли внутрь захоронения, чем и навлекли на себя гнев почитателей древнего божества.\n\nЧерез три года, уже в Англии, с членами семьи Бэннингов, участвовавших в той злополучной экспедиции, начинают случаться неприятности, приведшие к смерти двух из них... Приехавший из Лондона инспектор Малруни сначала отказывается верить в то, что причиной смерти явилось древнее проклятие, а непосредственным убийцей является ожившая мумия, но дальнейшие факты заставили его кардинально изменить свою точку зрения..." />
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

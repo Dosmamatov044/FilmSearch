@@ -35,15 +35,17 @@ class FragmentSearch : Fragment() {
                 activity?.showToast("Введите название!")
             }
             else{
-                val name = binding.etInputName.text.toString()
+                name = binding.etInputName.text.toString()
                 viewModel.fetchMovieByName(name = name)
 
-                activity?.showToast(viewModel.toString())
+                //activity?.showToast(viewModel.toString())
 
                    findNavController().navigate(R.id.fragmentResultSearch)}
 }
             }
 
-
+companion object{
+    lateinit var name: String
+}
 
     }

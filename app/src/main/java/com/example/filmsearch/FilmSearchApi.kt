@@ -30,6 +30,8 @@ interface FilmSearchApi {
   @Query("token") token: String,
   @Query("field") nameField: String,
   @Query("search") nameSearch: String,
+  @Query("page") page: Int,
+ // @Query("limit") limit: Int = 20
 
  ):Response <Movies>
 

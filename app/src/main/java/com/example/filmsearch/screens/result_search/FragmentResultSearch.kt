@@ -5,14 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.filmsearch.Constants
+import com.example.filmsearch.R
 import com.example.filmsearch.databinding.FragmentResultSearchBinding
 import com.example.filmsearch.model.Doc
 
 import com.example.filmsearch.screens.search.FilmSearchViewModel
+import com.example.filmsearch.screens.search.FilmSearchViewModel.Companion.pages
+import com.example.filmsearch.screens.search.FragmentSearch.Companion.name
 import com.example.filmsearch.showToast
 
 
@@ -22,7 +29,7 @@ class FragmentResultSearch : Fragment() {
     val viewModel: FilmSearchViewModel by activityViewModels()
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: ResultSearchAdapter
-
+    var pageCounter: Int = 1
 
 
     override fun onCreateView(
@@ -40,11 +47,39 @@ class FragmentResultSearch : Fragment() {
 
         activity?.showToast(viewModel.toString())
         init()
+
+        binding.btnNextResult.setOnClickListener { searchNextMovie() }
+        binding.btnBackResult.setOnClickListener { searchBackMovie() }
     }
+
+    private fun searchNextMovie() {
+        if (pageCounter == pages ){
+            activity?.showToast("Это последняя страница!")
+        } else {
+            pageCounter++
+            viewModel.fetchMovieByName(name, page = pageCounter)
+            activity?.showToast("pageConter == $pageCounter")
+        }
+    }
+    private fun searchBackMovie() {
+
+        if (pageCounter == 1){
+            activity?.showToast("Это первая страница!")
+        }
+
+
+        else {
+            pageCounter--
+            activity?.showToast("pageConter == $pageCounter")
+           viewModel.fetchMovieByName(name, page = pageCounter)
+
+        }
+    }
+
     private fun init() {
 
         recyclerView = binding.rvResultSearch
-        adapter = ResultSearchAdapter()//this::onItemClick)
+        adapter = ResultSearchAdapter(this::onItemClick)
         recyclerView.adapter = adapter
         viewModel.filmsLiveData.observe(viewLifecycleOwner){
             adapter.resultList = it
@@ -52,5 +87,14 @@ class FragmentResultSearch : Fragment() {
         }
         recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        activity?.showToast("pageConter == $pageCounter")
+    }
+
+    private fun onItemClick(model: Doc,) {
+
+activity?.showToast("Click on position $model")
+      // val bundle: Bundle? = Bundle()
+       // bundle?.putSerializable(Constants.BUNDLE_KEY, model)
+       findNavController().navigate(R.id.fragmentCurrent)
     }
 }

@@ -8,11 +8,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.filmsearch.App
 import com.example.filmsearch.Constants
 import com.example.filmsearch.model.Doc
+import com.example.filmsearch.model.Movies
 import kotlinx.coroutines.launch
 
 class FilmSearchViewModel: ViewModel() {
 
     val filmsLiveData=MutableLiveData<List<Doc>> ()
+
+
+
 
 
 
@@ -55,9 +59,9 @@ class FilmSearchViewModel: ViewModel() {
     }
 
 
-     fun fetchMovieByName(name: String) {
+     fun fetchMovieByName(name: String, page: Int = 1) {
         viewModelScope.launch {
-            val data=  App.api?.fetchMovieByName(Constants.TOKEN,"name",name)
+            val data=  App.api?.fetchMovieByName(Constants.TOKEN,"name",name, page)
 
 
 
@@ -66,7 +70,7 @@ class FilmSearchViewModel: ViewModel() {
                 if (data!!.isSuccessful){
 
                     filmsLiveData.value=data.body()?.docs
-
+                    pages = data.body()?.pages
 
                 }else{
 
@@ -85,5 +89,7 @@ class FilmSearchViewModel: ViewModel() {
 
     }
 
-
+companion object{
+    var pages: Int? = 0
+}
 }

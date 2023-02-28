@@ -10,7 +10,7 @@ import com.example.filmsearch.databinding.ListMovieItemBinding
 import com.example.filmsearch.loadImage
 import com.example.filmsearch.model.Doc
 
-class ResultSearchAdapter:RecyclerView.Adapter<ResultSearchAdapter.ResultHolder>() {
+class ResultSearchAdapter(val onClick: (Doc) -> Unit):RecyclerView.Adapter<ResultSearchAdapter.ResultHolder>() {
 
    var resultList = listOf<Doc>()
        set(value) {
@@ -32,15 +32,16 @@ class ResultSearchAdapter:RecyclerView.Adapter<ResultSearchAdapter.ResultHolder>
         with (binding){
             tvName.text = model.name
             tvGenres.text = model.type
-            tvYear.text = model.year.toString()
-            tvVote.text = model.votes.kp.toString()
+            tvYear.text = "Год выпуска: ${model.year.toString()}"
+            val rating = model.rating?.kp
+            tvVote.text = String.format("%.1f", rating)
 
 
 
 
 
             try {
-                imgItem.loadImage(model.poster.previewUrl)
+                imgItem.loadImage(model.poster?.previewUrl)
             }catch (e:java.lang.NullPointerException){
 
                 Log.d("errors",e.message.toString())
@@ -57,7 +58,9 @@ class ResultSearchAdapter:RecyclerView.Adapter<ResultSearchAdapter.ResultHolder>
 
         }
 
-
+        binding.listMovieItem.setOnClickListener{
+            onClick(model)
+        }
     }
 
     override fun getItemCount(): Int {
